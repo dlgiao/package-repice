@@ -8,6 +8,10 @@ on:
 
 jobs:
   build:
+
+    strategy:
+      matrix:
+        node-version: ["21.x", "20.x"]
     runs-on: ubuntu-latest
 
     steps:
@@ -17,7 +21,7 @@ jobs:
       - name: Setup environment
         uses: actions/setup-node@v4.4.0
         with:
-          node-version: "21.x"
+          node-version: ${{ matrix.node-version }}
           check-latest: true
 
       - name: Install dependencies
